@@ -11,3 +11,4 @@ default['kibana']['apache']['host'] = node['fqdn']
 default['kibana']['apache']['interface'] = node['ipaddress']
 default['kibana']['apache']['port'] = 80
 default['kibana']['rubyversion'] = '1.9.1'
+default['kibana']['use_init_d'] = node['platform_family'] == "debian"

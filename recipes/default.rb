@@ -44,10 +44,27 @@ service 'kibana' do
   action :nothing
 end
 
-template '/etc/init/kibana.conf' do
-  source 'upstart.conf.erb'
-  mode '0600'
-  notifies :restart, 'service[kibana]', :delayed
+if node['kibana']['use_init_d']
+
+  template '/etc/init.d/kibana' do
+    source 'init.erb'
+    mode '0755'
+    notifies :restart, 'service[kibana]', :delayed
+  end
+
+  execute "update-rc.d kibana defaults" do
+    command "update-rc.d kibana defaults"
+    action :nothing
+  end
+
+else
+
+  template '/etc/init/kibana.conf' do
+    source 'upstart.conf.erb'
+    mode '0600'
+    notifies :restart, 'service[kibana]', :delayed
+  end
+
 end
 
 template "#{node['kibana']['base_dir']}/KibanaConfig.rb" do
