@@ -29,8 +29,8 @@ end
 apt_package "libcurl4-gnutls-dev"
 apt_package "ruby#{node['kibana']['rubyversion']}-full"
 
-execute "Symlink ruby<%= node['kibana']['rubyversion'] %> to ruby" do
-  command "ln -s /usr/bin/ruby<%= node['kibana']['rubyversion'] %> /usr/bin/ruby"
+link '/usr/bin/ruby' do
+  to "/usr/bin/ruby<%= node['kibana']['rubyversion'] %>"
   not_if { ::File.exists?("/usr/bin/ruby")}
 end
 
