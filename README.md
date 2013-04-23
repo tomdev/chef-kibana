@@ -24,6 +24,7 @@ Attributes
 * `node['kibana']['apache']['interface']` - The interface on which to bind apache. Defaults to `node['ipaddress']`
 * `node['kibana']['apache']['port']` - The port on which to bind apache. Defaults to 80.
 * `node['kibana']['rubyversion']` - The version of Ruby and Gems to use for Kibana.
+* * `node['kibana']['use_init_d']` - Defaults to true on Debian systems.
 
 
 Recipes
