@@ -39,7 +39,6 @@ bash 'kibana bundle install' do
 end
 
 service 'kibana' do
-  provider Chef::Provider::Service::Upstart
   supports :start => true, :restart => true, :stop => true, :status => true
   action :nothing
 end
